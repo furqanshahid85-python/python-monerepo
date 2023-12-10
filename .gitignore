@@ -1,0 +1,7 @@
+env/
+__pycache__
+.pants.d
+dist
+.pids
+.pants.workdir.file_lock
+.DS_Store

@@ -1,0 +1,26 @@
+[GLOBAL]
+pants_version = "2.18.1"
+backend_packages.add = [
+  "pants.backend.python",
+  "pants.backend.python.lint.black",
+  "pants.backend.build_files.fmt.black",
+  "pants.backend.python.lint.docformatter",
+  "pants.backend.python.lint.flake8",
+  "pants.backend.python.typecheck.mypy",
+]
+
+
+[anonymous-telemetry]
+enabled = false
+
+[source]
+root_patterns = ["/"]
+
+[python]
+interpreter_constraints = [">=3.9.*"]
+
+
+[python-bootstrap]
+search_path = [
+    "/usr/bin/python3",
+]

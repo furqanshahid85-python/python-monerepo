@@ -1,0 +1,7 @@
+VERSION 0.7
+
+all-unit-test:
+    BUILD ./health_fitness_app/bmi_service+unit-test
+
+
+# all-docker:
