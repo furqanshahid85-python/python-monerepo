@@ -1,3 +1,2 @@
-Flask @ file:///Users/builder/cbouss/perseverance-python-buildout/croot/flask_1699241060066/work
-pytest @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_aah9mcqp52/croot/pytest_1700685155539/work
-requests @ file:///Users/builder/cbouss/perseverance-python-buildout/croot/requests_1699238126620/work
+pytest==7.4.3
+requests==2.31.0

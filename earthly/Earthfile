@@ -1,7 +1,31 @@
 VERSION 0.7
+FROM python:3
+WORKDIR /code
 
-all-unit-test:
-    BUILD ./health_fitness_app/bmi_service+unit-test
+deps:
+    RUN pip install --upgrade pip
+    RUN pip install wheel
+    COPY requirements.txt ./
+    RUN pip wheel -r requirements.txt --wheel-dir=wheels
+    SAVE ARTIFACT wheels /wheels
 
+build:
+    FROM +deps
+    COPY health_fitness_app health_fitness_app
+    SAVE ARTIFACT health_fitness_app /health_fitness_app
 
-# all-docker:
+unit-tests:
+    COPY +deps/wheels wheels
+    COPY +build/health_fitness_app health_fitness_app
+    COPY requirements.txt ./
+    RUN pip install --no-index --find-links=wheels -r requirements.txt
+    RUN pytest health_fitness_app
+
+docker:
+    COPY +deps/wheels wheels
+    COPY +build/health_fitness_app health_fitness_app
+    COPY requirements.txt ./
+    ARG tag='latest'
+    RUN pip install --no-index --find-links=wheels -r requirements.txt
+    ENTRYPOINT ["python3", "health_fitness_app/main.py"]
+    SAVE IMAGE python-earthly-monorepo:$tag
